@@ -6,7 +6,7 @@ Feature: Hello World
     And print "Hello World!"
 
 
-  Scenario: Tests
+  Scenario: Get SOVAPI version
     Given be Verbose
     And print "Scenario2"
     Then get SOVAPI version
