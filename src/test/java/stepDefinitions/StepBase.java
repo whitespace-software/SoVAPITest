@@ -1,14 +1,20 @@
 package stepDefinitions;
 
+import helper.IResponseString;
+import helper.JSONChecker;
 import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+
+import java.util.List;
 
 import static io.restassured.RestAssured.given;
 
-public class StepBase {
+public class StepBase implements IResponseString {
     protected Response lastResponse;
     protected String lastURL;
     protected Boolean verbose = false;
+    JSONChecker lastChecker = new JSONChecker(this);
 
     protected void checkStatusCodeIs(int code) {
         try {
@@ -31,6 +37,22 @@ public class StepBase {
         lastResponse = given().contentType(ContentType.JSON).when()
                 .get(lastURL)
                 .then().extract().response();
+    }
+
+    public String getLastResponse() {
+        if( lastResponse == null )
+            return "{}";
+        else
+            return lastResponse.asString();
+    }
+
+    protected String getString(String path) {
+        JsonPath jsonPath = new JsonPath(lastResponse.asString());
+        return jsonPath.getString(path);
+    }
+    protected List<Object> getElement (String path) {
+        JsonPath jsonPath = new JsonPath(lastResponse.asString());
+        return jsonPath.getList(path);
     }
 
     protected void printLast() {

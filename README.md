@@ -19,11 +19,8 @@ Copied from APITestAutomation and edited
 9. Build the project by right clicking on the 'TestRunner' file and Select Build Module
 10. Run the project by right clicking on the 'TestRunner' file and Select Run
 
-
-<br/>
-
 ## Test Reports
 Once the execution has completed, test report can be seen at the below path:<br/>
 `**\target\cucumber-reports\`
 
-File: ExtentReport.html
+
