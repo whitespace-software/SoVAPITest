@@ -13,15 +13,4 @@ public class Hooks {
         RestAssured.baseURI = config.getBaseUrl();
     }
 
-    @Before("@tess")
-    public void tessEnv() {
-        config.setEnv("tess");
-        RestAssured.baseURI = config.getBaseUrl();
-    }
-
-    @Before("@staging")
-    public void stagingEnv() {
-        config.setEnv("staging");
-        RestAssured.baseURI = config.getBaseUrl();
-    }
 }

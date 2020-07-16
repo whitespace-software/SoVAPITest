@@ -10,7 +10,7 @@ import io.cucumber.java.en.Then;
 public class Version extends StepBase {
 
     public Response getVersion() {
-        lastURL = "/sovapi/version";
+        lastURL = "/version";
         getResponse();
         checkStatusCodeIs(200);
         checkContentTypeIs(ContentType.JSON);

@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.nio.file.Paths;
 
 public class Config {
+
+
     private final String FILE_NAME = "config.json";
     private final String PATH_TO_FILE = Paths.get(System.getProperty("user.dir"), "src", "test", "resources", "config").toString();
 
@@ -26,11 +28,17 @@ public class Config {
         return currentEnvironment;
     }
 
-    public String getBaseUrl() {
-        String path = String.format("%s.host", currentEnvironment);
+    public  String getTokenForUser( String nickname ) {
+        String path = String.format( "%s.users.%s.token", currentEnvironment, nickname );
         return jsonPath.getString(path);
     }
 
+
+    public String getBaseUrl() {
+        String path = String.format("%s.root", currentEnvironment);
+        return jsonPath.getString(path);
+    }
+    /*
     public String getResource() {
         String path = String.format("%s.resource", currentEnvironment);
         return jsonPath.getString(path);
@@ -40,6 +48,7 @@ public class Config {
         String path = String.format("%s.tokens.%s", currentEnvironment, user);
         return jsonPath.getString(path);
     }
+    */
 
     private static JSONObject getObject(String path, String filename) {
 

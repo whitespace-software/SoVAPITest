@@ -15,6 +15,7 @@ public class StepBase implements IResponseString {
     protected String lastURL;
     protected Boolean verbose = false;
     JSONChecker lastChecker = new JSONChecker(this);
+    String token = "";
 
     protected void checkStatusCodeIs(int code) {
         try {
@@ -34,7 +35,9 @@ public class StepBase implements IResponseString {
     }
 
     protected void getResponse() {
-        lastResponse = given().contentType(ContentType.JSON).when()
+
+
+        lastResponse = given().contentType(ContentType.JSON).header("Authorization", "Bearer " + token ).when()
                 .get(lastURL)
                 .then().extract().response();
     }
