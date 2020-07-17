@@ -15,7 +15,7 @@ public class Config {
     private final String FILE_NAME = "config.json";
     private final String PATH_TO_FILE = Paths.get(System.getProperty("user.dir"), "src", "test", "resources", "config").toString();
 
-    private static String currentEnvironment;
+    private static String currentEnvironment = "dev";
     private final JSONObject jsonObject = getObject(PATH_TO_FILE, FILE_NAME);
     private final JsonPath jsonPath = new JsonPath(jsonObject.toString());
 

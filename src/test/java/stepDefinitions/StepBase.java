@@ -35,11 +35,15 @@ public class StepBase implements IResponseString {
     }
 
     protected void getResponse() {
-
+        System.out.println("Calling " + lastURL );
 
         lastResponse = given().contentType(ContentType.JSON).header("Authorization", "Bearer " + token ).when()
                 .get(lastURL)
                 .then().extract().response();
+    }
+    void postPayload( String payload ) {
+        lastResponse = given().contentType(ContentType.JSON).header("Authorization", "Bearer " + token )
+                .body( payload ).when().post( lastURL ).then().extract().response();
     }
 
     public String getLastResponse() {
