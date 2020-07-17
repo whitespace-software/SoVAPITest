@@ -1,5 +1,7 @@
 package stepDefinitions;
 
+import config.Config;
+import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
@@ -28,5 +30,10 @@ public class Version extends StepBase {
     @Given("Verbose Version")
     public void beVerbose() {
         verbose = true;
+    }
+
+    @And("set environment")
+    public void setEnvironment() {
+        RestAssured.baseURI = new Config().getBaseUrl();
     }
 }

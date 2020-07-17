@@ -6,6 +6,7 @@ import helper.Payload;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import org.testng.Assert;
 
@@ -20,6 +21,7 @@ public class Risk extends StepBase {
     public void aTokenExistsFor(String nickname) {
         Config config = new Config();
         token = config.getTokenForUser(nickname);
+        RestAssured.baseURI = config.getBaseUrl();      // to avoid need for hooks.java
         Assert.assertNotNull( token );
     }
 
